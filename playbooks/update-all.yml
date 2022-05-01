@@ -1,0 +1,84 @@
+---
+# - name: Run Update on Pihole
+#   hosts: pihole
+#   gather_facts: true
+#   tasks:
+#   - name: Check and update with shell
+#     shell: pihole -up
+#    register: update_results
+#   - name: Update Results
+#     debug:
+#       msg: "{{ update_results.stdout_lines }}"
+#   - name: pihole version
+#     shell: pihole -v
+#     register: version_results
+#   - name: Version Results
+#     debug:
+#       msg: "{{ version_results.stdout_lines }}"
+
+ - name: Run updates on windows machine(s)
+   hosts: windows
+   gather_facts: true
+   tasks:
+   - name: Windows updates
+     block:
+       - name: Search Windows Updates
+         ansible.windows.win_updates:
+           category_names: '*'
+           skip_optional: no
+           state: searched
+           log_path:  C:/ansible_windows_updates_search.log
+         register: search_results
+       - name: Search Results
+         debug:
+           msg: "{{ search_results }}"
+       - name: Download Windows Updates
+         ansible.windows.win_updates:
+           category_names: '*'
+           skip_optional: no
+           state: downloaded
+           log_path:  C:/ansible_windows_updates_download.log
+         register: download_results
+       - name: Download Results
+         debug:
+           msg: "{{ download_results }}"      
+       - name: Install Windows Updates (using '*')
+         ansible.windows.win_updates:
+           category_names: '*'
+           skip_optional: no
+           state: installed
+           reboot: yes
+           log_path:  C:/ansible_windows_updates_all.log
+         register: update_results
+       - name: Installation Results
+         debug:
+           msg: "{{ update_results }}"
+       - name: Install Windows Updates (using spelled out category_names)
+         ansible.windows.win_updates:
+           category_names:
+             - SecurityUpdates
+             - CriticalUpdates
+             - UpdateRollups
+             - DefinitionUpdates
+             - updates
+             - FeaturePacks
+             - Servicepacks
+             - Tools
+             - Application
+             - 'Drivers'
+           skip_optional: no
+           state: installed
+           reboot: yes
+           log_path:  C:/ansible_windows_updates_cat_listed.log
+         register: update_results_cat_listed
+       - name: Update Results
+         debug:
+           msg: "{{ update_results_cat_listed }}"    
+       - name: Upgrade Installed Chocolatey Packages
+         win_chocolatey:
+           name: all
+           state: latest
+         register: upgrade_results
+       - name: Upgrade Results
+         debug:
+           msg: "{{ upgrade_results }}"   
