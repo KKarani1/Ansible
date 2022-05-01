@@ -1,0 +1,77 @@
+---
+ - name: "Setup Chocolatey on windows machine(s)"
+   gather_facts: true
+   hosts: windows
+   tasks: 
+   - name: Install Chocolatey, Chocolatey GUI, and Packages
+     block:
+     - name: Install Chocolatey
+       win_chocolatey:
+        name:
+         - chocolatey
+         - chocolatey-core.extension
+        state: present
+       register: install_results
+     - name: Chocolatey Installation Results
+       debug:
+         msg: "{{ install_results }}"
+     - name: Install Chocolatey GUI
+       win_chocolatey:
+        name:
+         - chocolateygui
+        state: present
+       register: gui_install_results
+     - name: Chocolatey GUI Installation Results
+       debug:
+         msg: "{{ gui_install_results }}"
+     - name: Install Chocolatey Packages
+       win_chocolatey:
+        name:
+         - 7zip
+         - audacity
+         - bleachbit
+         - blender
+         - brave
+         - chocolatey-dotnetfx.extension
+         - chocolatey-windowsupdate.extension
+         - croc
+         - docker-desktop
+         - DotNet4.5.2
+         - dotnetfx
+         - ferdi
+         - Firefox
+         - gimp
+         - kdenlive
+         - krita
+         - libreoffice-still
+         - librewolf
+         - lightworks
+         - malwarebytes
+         - natron
+         - notepadplusplus
+         - obs-studio
+         - sandboxie
+         - syncthing
+         - syncthing-gtk
+         - synctrayzor
+         - thunderbird
+         - ungoogled-chromium
+         - virtualbox
+         - vlc
+         - vmware-workstation-player
+        state: present
+       register: package_installation_results
+     - name: Chocolatey Packages Installation Results
+       debug:
+         msg: "{{ package_installation_results }}"
+     - name: Install Prerelease Packages
+       win_chocolatey:
+        name:
+         - freetube
+        state: present
+        allow_prerelease: yes
+       register: prerelease_installation_results
+     - name: Prerelease Chocolatey Package Installation Results
+       debug:
+         msg: "{{ prerelease_installation_results }}"
+     
