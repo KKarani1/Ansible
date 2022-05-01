@@ -1,0 +1,11 @@
+---
+ - name: Shutdown All Windows Machines
+   hosts: windows
+   tasks: 
+   - name: Shutdown Windows Machines
+     ansible.windows.win_command: shutdown /s /t 0
+     register: shutdown_results
+   - name: Shutdown Results
+     debug:
+       msg: "{{ shutdown_results }}"  
+     
