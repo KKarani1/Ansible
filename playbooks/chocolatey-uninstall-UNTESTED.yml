@@ -1,0 +1,17 @@
+---
+ - name: "Uninstall Chocolatey Program on windows machine(s)"
+   gather_facts: true
+   hosts: windows
+   tasks: 
+   - name: Uninstall Chocolatey Program
+     block:  
+     - name: Uninstall Chocolatey Program
+       win_chocolatey:
+        name:
+         - 
+        state: absent
+       register: uninstall_results
+     - name: Chocolatey Uninstallation Results
+       debug:
+         msg: "{{ uninstall_results }}"  
+     
