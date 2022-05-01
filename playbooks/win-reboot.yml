@@ -1,0 +1,7 @@
+---
+ - name: Reboot All Windows Machines
+   hosts: windows
+   tasks: 
+   - name: Rebooting Windows Machines
+     ansible.windows.win_reboot:
+     
