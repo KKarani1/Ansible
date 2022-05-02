@@ -1,0 +1,47 @@
+[linux]
+
+[linux:children]
+pihole
+
+[pihole]
+pihole01 ansible_host=192.168.1.X
+
+[pihole:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_connection=ssh
+ansible_user=pi
+ansible_become=yes
+ansible_become_method=sudo
+
+[windows]
+
+[windows:children]
+hp
+acer
+desktop
+dell
+
+[hp]
+windowshost-hp ansible_host=192.168.1.X
+
+[acer]
+windowshost-acer ansible_host=192.168.1.X
+
+[desktop]
+windowshost-desktop ansible_host=192.168.1.X
+
+[dell]
+windowshost-delltop ansible_host=192.168.1.X
+windowshost-dellbottom ansible_host=192.168.1.X
+
+[windows:vars]
+ansible_user=X
+ansible_connection=winrm
+ansible_winrm_transport=credssp
+ansible_winrm_message_encryption=always
+ansible_port=5986
+ansible_winrm_scheme=https
+ansible_winrm_server_cert_validation=ignore
+#ansible_become=yes
+#ansible_become_method=runas
+#ansible_become_user=X
