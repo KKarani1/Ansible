@@ -18,9 +18,9 @@ The instructions below are assuming that the playbooks have worked before and yo
 3) Store the password of the admin Windows user in the ansible vault
 4) Store the output of the ansible vault in the windows.yml file under /etc/ansible/group_vars
 5) Write the password of the ansible vault in the open_vault.txt file
-6) create ssh keys for the Linux admin machine
-7) copy the ssh keys onto the host Linux machines
-8) check that the Linux admin machine can connect to the host machines using "ansible -m ping linux" and "ansible -m win_ping windows"
+6) Create ssh keys for the Linux admin machine
+7) Copy the ssh keys onto the host Linux machines
+8) Check that the Linux admin machine can connect to the host machines using "ansible -m ping linux" and "ansible -m win_ping windows"
 9) Run chocolatey-install.yml playbook using the command "ansible-playbook /etc/ansible/playbooks/chocolatey-install.yml" (customize this file and all subsequent .yml files to your liking. For me, it includes Chocolately, Chocolatey GUI, and packages)
 10) Run update-all.yml playbook using the command "ansible-playbook /etc/ansible/playbooks/update-all.yml" (Windows computers will automatically restart and reconnect to check in, if needed for OS updates)
 11) Run win-reboot.yml playbook using the command "ansible-playbook /etc/ansible/playbooks/win-reboot.yml" to restart all Windows computers (good idea after updates)
