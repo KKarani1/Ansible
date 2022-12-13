@@ -35,6 +35,7 @@
          - chocolatey-dotnetfx.extension
          - chocolatey-windowsupdate.extension
          - croc
+         - crystaldiskinfo
          - docker-desktop
          - DotNet4.5.2
          - dotnetfx
