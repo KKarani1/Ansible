@@ -51,6 +51,7 @@
          - natron
          - notepadplusplus
          - obs-studio
+         - python
          - sandboxie
          - syncthing
          - syncthing-gtk
