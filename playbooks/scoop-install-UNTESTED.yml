@@ -1,12 +1,10 @@
----
- - name: Install Packages using Scoop
-   community.windows.win_scoop:
+- name: Install Packages using Scoop
+  community.windows.win_scoop:
     gather_facts: true
     hosts: windows
-    name: 
-     - standardnotes
+    name: standardnotes
     global: true
-   register: scoop_install_results
- - name: Install Packages using Scoop Results
-   debug:
-     msg: "{{ scoop_install_results }}"
+  register: scoop_install_results
+- name: Install Packages using Scoop Results
+  debug:
+    msg: "{{ scoop_install_results }}"
