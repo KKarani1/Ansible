@@ -1,0 +1,6 @@
+---
+ - name: Install Packages using Scoop
+   community.windows.win_scoop:
+    name: 
+     - standardnotes
+    global: true
