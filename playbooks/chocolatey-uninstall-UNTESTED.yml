@@ -8,7 +8,8 @@
      - name: Uninstall Chocolatey Program
        win_chocolatey:
         name:
-         - 
+         - ferdi
+         - hamsket-nightly
         state: absent
        register: uninstall_results
      - name: Chocolatey Uninstallation Results
