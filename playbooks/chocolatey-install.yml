@@ -55,6 +55,7 @@
          - onlyoffice
          - portmaster
          - python
+         - rustdesk
          - sandboxie
          - syncthing
          - syncthing-gtk
