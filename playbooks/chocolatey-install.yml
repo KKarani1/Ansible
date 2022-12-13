@@ -39,6 +39,7 @@
          - docker-desktop
          - DotNet4.5.2
          - dotnetfx
+         - ferdium
          - ferdi
          - Firefox
          - gimp
@@ -52,6 +53,7 @@
          - notepadplusplus
          - obs-studio
          - onlyoffice
+         - portmaster
          - python
          - sandboxie
          - syncthing
